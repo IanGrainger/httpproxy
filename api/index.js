@@ -1,8 +1,7 @@
 const axios = require("axios").default;
 
 module.exports = async (req, res) => {
-  const { name = "World" } = req.query;
-
+  console.log("req.body", req.body);
   const { url, query, method } = JSON.parse(req.body);
   //ignoring query!
   const methodResult = await axios.request({
