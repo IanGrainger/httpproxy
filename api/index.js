@@ -11,9 +11,5 @@ module.exports = async (req, res) => {
   });
 
   console.log("got method result", methodResult);
-  res
-    .status(200)
-    .send(
-      `Hello ${name}!\nbody ${req.body}\nI got these params: ${url} ${query} ${method}\nAnd this result ${methodResult}`
-    );
+  res.status(200).send(methodResult);
 };
