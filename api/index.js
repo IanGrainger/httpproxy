@@ -20,5 +20,8 @@ const https = require('https');
 
 module.exports = (req, res) => {
   const { name = 'World' } = req.query
-  res.status(200).send(`Hello ${name}!`)
+
+  const {url, query, method} = req.body;
+
+  res.status(200).send(`Hello ${name}!\nI got these params: ${url} ${query} ${method}`)
 }
