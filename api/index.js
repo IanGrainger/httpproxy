@@ -1,4 +1,4 @@
-const https = require('https');
+const https = require("https");
 
 // https.get('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY', (resp) => {
 //   let data = '';
@@ -17,11 +17,14 @@ const https = require('https');
 //   console.log("Error: " + err.message);
 // });
 
-
 module.exports = (req, res) => {
-  const { name = 'World' } = req.query
+  const { name = "World" } = req.query;
 
-  const {url, query, method} = req.body;
+  const { url, query, method } = JSON.parse(req.body);
 
-  res.status(200).send(`Hello ${name}!\nI got these params: ${url} ${query} ${method}`)
-}
+  res
+    .status(200)
+    .send(
+      `Hello ${name}!\nbody ${req.body}\nI got these params: ${url} ${query} ${method}`
+    );
+};
