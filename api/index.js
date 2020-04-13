@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
     return true;
   }
 
-  const { url, method } = JSON.parse(req.body);
+  const { url, method } = req.body;
   console.log("url", url, "method", method);
   const methodResult = await axios.request({
     method: method,
