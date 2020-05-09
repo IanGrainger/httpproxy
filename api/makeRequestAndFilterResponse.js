@@ -18,6 +18,7 @@ async function makeRequestAndFilterResponse(
   console.log("length of resp", methodResult.data[responseFilterRoot].length);
 
   if (
+    responseFilterArray &&
     typeof responseFilterArray === "string" &&
     responseFilterArray[0] === "["
   ) {
@@ -32,7 +33,11 @@ async function makeRequestAndFilterResponse(
     );
   }
 
-  if (responseFilterArray.length > 0 && methodResult.data) {
+  if (
+    responseFilterArray &&
+    responseFilterArray.length > 0 &&
+    methodResult.data
+  ) {
     const dataArray = responseFilterRoot
       ? methodResult.data[responseFilterRoot]
       : methodResult.data;
@@ -43,6 +48,7 @@ async function makeRequestAndFilterResponse(
       return thisObj;
     });
   }
+
   return resultArr;
 }
 
