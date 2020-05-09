@@ -16,6 +16,19 @@ async function makeRequestAndFilterResponse(
   console.log("running, RFA", responseFilterArray);
   console.log("running, RFA.length", responseFilterArray.length);
   console.log("length of resp", methodResult.data[responseFilterRoot].length);
+
+  if (
+    typeof responseFilterArray === "string" &&
+    responseFilterArray[0] === "["
+  ) {
+    responseFilterArray = responseFilterArray.substr(
+      1,
+      responseFilterArray.length - 2
+    );
+    console.log("RFA before split", responseFilterArray);
+    responseFilterArray = responseFilterArray.split(", ");
+  }
+
   if (responseFilterArray.length > 0 && methodResult.data) {
     const dataArray = responseFilterRoot
       ? methodResult.data[responseFilterRoot]
