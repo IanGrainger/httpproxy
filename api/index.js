@@ -49,6 +49,12 @@ async function handlePost(req, res) {
   );
 
   var result = resultArr.length ? resultArr : "Ok";
+  console.log(
+    "returning",
+    resultArr.length,
+    "first entry",
+    resultArr.length && resultArr[0]
+  );
 
   res.status(200).send(result);
   return "Ok";

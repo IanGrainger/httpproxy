@@ -21,12 +21,9 @@ async function makeRequestAndFilterResponse(
     typeof responseFilterArray === "string" &&
     responseFilterArray[0] === "["
   ) {
-    responseFilterArray = responseFilterArray.substr(
-      1,
-      responseFilterArray.length - 2
-    );
-    console.log("RFA before split", responseFilterArray);
-    responseFilterArray = responseFilterArray.split(", ");
+    responseFilterArray = responseFilterArray
+      .substr(1, responseFilterArray.length - 2)
+      .split(", ");
     console.log(
       "RFA length after",
       responseFilterArray.length,
@@ -40,7 +37,6 @@ async function makeRequestAndFilterResponse(
       ? methodResult.data[responseFilterRoot]
       : methodResult.data;
     resultArr = dataArray.map((data) => {
-      // todo: make this back into an object!
       const thisObj = responseFilterArray
         .map((filter) => [filter, resolve(filter, data)])
         .reduce((map, [key, val]) => ({ ...map, [key]: val }), {});
