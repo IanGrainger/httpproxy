@@ -30,7 +30,7 @@ async function handlePost(req, res) {
     responseFilterRoot = "",
     responseFilterArray = [],
   } = req.body;
-  console.error(
+  console.log(
     "url",
     url,
     "method",
