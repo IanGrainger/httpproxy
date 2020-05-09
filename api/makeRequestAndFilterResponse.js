@@ -35,6 +35,7 @@ async function makeRequestAndFilterResponse(
 
   if (
     responseFilterArray &&
+    responseFilterArray.length &&
     responseFilterArray.length > 0 &&
     methodResult.data
   ) {
