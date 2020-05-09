@@ -27,6 +27,12 @@ async function makeRequestAndFilterResponse(
     );
     console.log("RFA before split", responseFilterArray);
     responseFilterArray = responseFilterArray.split(", ");
+    console.log(
+      "RFA length after",
+      responseFilterArray.length,
+      "content",
+      responseFilterArray
+    );
   }
 
   if (responseFilterArray.length > 0 && methodResult.data) {
