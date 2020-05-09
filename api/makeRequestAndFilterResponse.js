@@ -13,9 +13,6 @@ async function makeRequestAndFilterResponse(
     responseType: "json",
   });
   var resultArr = [];
-  console.log("running, RFA", responseFilterArray);
-  console.log("running, RFA.length", responseFilterArray.length);
-  console.log("length of resp", methodResult.data[responseFilterRoot].length);
 
   if (
     responseFilterArray &&
