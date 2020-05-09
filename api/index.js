@@ -47,7 +47,7 @@ async function handlePost(req, res) {
   if (responseFilterArray.length > 0 && methodResult.data) {
     const dataArray = responseFilterRoot
       ? methodResult.data
-      : methodResult[responseFilterRoot];
+      : methodResult.data[responseFilterRoot];
 
     resultArr = dataArray.map((data) => {
       // todo: make this back into an object!
