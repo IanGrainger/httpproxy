@@ -12,7 +12,6 @@ async function makeRequestAndFilterResponse(
     url: url,
     responseType: "json",
   });
-  console.log("got result", methodResult);
   var resultArr = [];
   if (responseFilterArray.length > 0 && methodResult.data) {
     const dataArray = responseFilterRoot
