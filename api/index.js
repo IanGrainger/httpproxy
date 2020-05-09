@@ -19,12 +19,19 @@ function handleGet(req, res) {
 }
 
 async function handlePost(req, res) {
-  const { url, method, responseFilterArray = [] } = req.body;
+  const {
+    url,
+    method,
+    responseFilterRoot = "",
+    responseFilterArray = [],
+  } = req.body;
   console.log(
     "url",
     url,
     "method",
     method,
+    "responseFilterRoot",
+    responseFilterRoot,
     "responseFilterArray",
     responseFilterArray
   );
@@ -37,12 +44,12 @@ async function handlePost(req, res) {
   console.log("got result", methodResult);
 
   var resultArr = [];
-  if (
-    responseFilterArray.length > 0 &&
-    methodResult.data &&
-    methodResult.data.length > 0
-  ) {
-    resultArr = methodResult.data.map((data) => {
+  if (responseFilterArray.length > 0 && methodResult.data) {
+    const dataArray = responseFilterRoot
+      ? methodResult.data
+      : methodResult[responseFilterRoot];
+
+    resultArr = dataArray.map((data) => {
       // todo: make this back into an object!
       return responseFilterArray.map((filter) => [filter, data[filter]]);
     });
