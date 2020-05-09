@@ -39,12 +39,11 @@ async function makeRequestAndFilterResponse(
     const dataArray = responseFilterRoot
       ? methodResult.data[responseFilterRoot]
       : methodResult.data;
-    resultArr = dataArray.map((data) => {
-      const thisObj = responseFilterArray
+    resultArr = dataArray.map((data) =>
+      responseFilterArray
         .map((filter) => [filter, resolve(filter, data)])
-        .reduce((map, [key, val]) => ({ ...map, [key]: val }), {});
-      return thisObj;
-    });
+        .reduce((map, [key, val]) => ({ ...map, [key]: val }), {})
+    );
   }
 
   return resultArr;
