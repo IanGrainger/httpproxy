@@ -1,4 +1,9 @@
+const {
+  makeRequestAndFilterResponse,
+} = require("./makeRequestAndFilterResponse");
+
 const axios = require("axios").default;
+exports.axios = axios;
 
 module.exports = async (req, res) => {
   // const { name = "World" } = req.query;
@@ -36,24 +41,12 @@ async function handlePost(req, res) {
     responseFilterArray
   );
 
-  const methodResult = await axios.request({
-    method: method,
-    url: url,
-    responseType: "json",
-  });
-  console.log("got result", methodResult);
-
-  var resultArr = [];
-  if (responseFilterArray.length > 0 && methodResult.data) {
-    const dataArray = responseFilterRoot
-      ? methodResult.data
-      : methodResult.data[responseFilterRoot];
-
-    resultArr = dataArray.map((data) => {
-      // todo: make this back into an object!
-      return responseFilterArray.map((filter) => [filter, data[filter]]);
-    });
-  }
+  var resultArr = await makeRequestAndFilterResponse(
+    method,
+    url,
+    responseFilterArray,
+    responseFilterRoot
+  );
 
   var result = resultArr.length ? resultArr : "Ok";
 
