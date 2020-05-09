@@ -37,7 +37,11 @@ async function handlePost(req, res) {
   console.log("got result", methodResult);
 
   var resultArr = [];
-  if (responseFilterArray.length > 0 && methodResult.data?.length > 0) {
+  if (
+    responseFilterArray.length > 0 &&
+    methodResult.data &&
+    methodResult.data.length > 0
+  ) {
     resultArr = methodResult.data.map((data) => {
       // todo: make this back into an object!
       return responseFilterArray.map((filter) => [filter, data[filter]]);
